@@ -146,4 +146,5 @@ print(selected_features.tolist())
 ![alt text](image-9.png)
 
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+Thus we have performed feature selection and feature scaling successfully.
+
