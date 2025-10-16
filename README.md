@@ -24,6 +24,126 @@ The feature selection techniques used are:
 3.Embedded Method
 
 # CODING AND OUTPUT:
-       # INCLUDE YOUR CODING AND OUTPUT SCREENSHOTS HERE
+```
+import pandas as pd
+import numpy as np
+from scipy import stats
+df=pd.DataFrame(pd.read_csv(r"C:\Users\acer\Downloads\bmi.csv"))
+df
+
+```
+
+![alt text](image.png)
+
+```
+df.head()
+```
+
+![alt text](image-1.png)
+
+```
+df.isnull().sum()
+```
+![alt text](image-2.png)
+
+```
+ss=StandardScaler()
+df2=pd.DataFrame()
+df2[columns]=ss.fit_transform(df1[columns])
+df2.head()
+
+```
+
+![alt text](image-3.png)
+
+```
+norm=Normalizer()
+df3=pd.DataFrame()
+columns=['Height',"Weight","Index"]
+df3=norm.fit_transform(df1[columns])
+df3=pd.DataFrame(df3)
+df3.columns=columns
+df3.head()
+```
+
+![alt text](image-4.png)
+
+```
+mas=MaxAbsScaler()
+df3=pd.DataFrame()
+columns=['Height',"Weight","Index"]
+df3=mas.fit_transform(df1[columns])
+df3=pd.DataFrame(df3)
+df3.columns=columns
+df3.head()
+```
+
+![alt text](image-5.png)
+
+```
+rs=RobustScaler()
+df3=pd.DataFrame()
+columns=['Height',"Weight","Index"]
+df3=rs.fit_transform(df1[columns])
+df3=pd.DataFrame(df3)
+df3.columns=columns
+df3.head()
+```
+
+![alt text](image-6.png)
+
+```
+min=MinMaxScaler()
+df3=pd.DataFrame()
+columns=['Height',"Weight","Index"]
+df3=min.fit_transform(df1[columns])
+df3=pd.DataFrame(df3)
+df3.columns=columns
+df3.head()
+```
+
+![alt text](image-7.png)
+
+```
+import pandas as pd
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import RidgeCV, LassoCV, Ridge, Lasso
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import mutual_info_classif
+from sklearn.feature_selection import mutual_info_regression
+from sklearn.feature_selection import chi2
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import SelectFromModel
+df=pd.DataFrame(pd.read_csv(r'D:\data science\titanic_dataset.csv'))
+df
+```
+
+![alt text](image-8.png)
+
+```
+df.drop(['PassengerId', 'Name', 'Ticket', 'Cabin'], axis=1, inplace=True)
+df['Age'].fillna(df['Age'].median(), inplace=True)
+df['Embarked'].fillna(df['Embarked'].mode()[0], inplace=True)
+df = pd.get_dummies(df, columns=['Sex', 'Embarked'], drop_first=True)
+X = df.drop('Survived', axis=1)
+y = df['Survived']
+rf = RandomForestClassifier(random_state=42)
+rf.fit(X, y)
+selector = SelectFromModel(rf, prefit=True)
+X_selected = selector.transform(X)
+selected_features = X.columns[selector.get_support()]
+print("Selected Features:")
+print(selected_features.tolist())
+```
+
+![alt text](image-9.png)
+
 # RESULT:
        # INCLUDE YOUR RESULT HERE
